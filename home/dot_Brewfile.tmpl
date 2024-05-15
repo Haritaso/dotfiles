@@ -1,0 +1,30 @@
+tap "homebrew/bundle"
+
+brew "asdf"
+brew "chezmoi"
+brew "direnv"
+brew "fish"
+brew "gh"
+brew "ghq"
+brew "nodebrew"
+brew "peco"
+brew "tailscale"
+brew "yarn"
+
+{{ if eq .chezmoi.os "darwin" }}
+tap "homebrew/cask"
+
+cask "1password"
+cask "discord"
+cask "google-chrome"
+cask "microsoft-office"
+cask "slack"
+cask "visual-studio-code"
+cask "zoom"
+
+{{ else if eq .chezmoi.os "linux" }}
+brew "readline"
+brew "gcc"
+brew "fontconfig"
+
+{{ end }}

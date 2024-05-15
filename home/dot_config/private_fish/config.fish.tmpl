@@ -1,0 +1,25 @@
+if status is-interactive
+  #
+end
+
+{{ if eq .chezmoi.os "darwin" }}
+eval (/opt/homebrew/bin/brew shellenv)
+
+{{ else if eq .chezmoi.os "linux" }}
+fish_add_path /home/linuxbrew/.linuxbrew/bin
+eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+{{ end }}
+
+# direnv
+eval (direnv hook fish)
+
+set -g async_prompt_functions _pure_prompt_git
+
+set -g GHQ_SELECTOR peco
+
+# oh-my-fish/plugin-peco
+bind \cr 'peco_select_history (commandline -b)'
+
+# Nodebrew
+fish_add_path $HOME/.nodebrew/current/bin
